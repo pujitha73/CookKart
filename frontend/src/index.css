@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #1f3d2b;
+  --color-forest-dark: #14281c;
+  --color-cream: #f6f1e7;
+  --color-cream-deep: #efe6d8;
+  --color-lime: #c7e86a;
+  --color-sage: #8fa88a;
+  --color-sage-muted: #d9e2d5;
+  --color-ink: #1b241f;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, -apple-system, sans-serif;
+
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+  --shadow-soft: 0 10px 30px rgba(20, 40, 28, 0.08);
+  --shadow-lift: 0 18px 40px rgba(20, 40, 28, 0.14);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-ink font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-forest-dark;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-lime) 55%, white);
+    color: var(--color-forest-dark);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-space {
+    @apply py-16 md:py-24;
+  }
+
+  .card-surface {
+    @apply rounded-[var(--radius-card)] bg-white/80 shadow-[var(--shadow-soft)] ring-1 ring-forest/5 backdrop-blur-sm;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-[0.18em] text-forest;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
